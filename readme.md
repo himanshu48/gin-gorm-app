@@ -1,3 +1,7 @@
+### Description
+A sample go app using gin and gorm.
+
+
 ### initialize
 go mod init gin-ws
 
