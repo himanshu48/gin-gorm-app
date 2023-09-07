@@ -25,8 +25,7 @@ func ConnectDatabase() {
 	var err error
 
 	if Dbdriver == constants.MySql {
-		// DBURL := fmt.Sprintf("%s:%s@tcp(%s:%s)/%s?charset=utf8&parseTime=True&loc=Local", DbUser, DbPassword, DbHost, DbPort, DbName)
-		DBURL := fmt.Sprintf("%s:''@tcp(%s:%s)/%s?charset=utf8&parseTime=True&loc=Local", DbUser, DbHost, DbPort, DbName)
+		DBURL := fmt.Sprintf("%s:%s@tcp(%s:%s)/%s?charset=utf8&parseTime=True&loc=Local", DbUser, DbPassword, DbHost, DbPort, DbName)
 		DB, err = gorm.Open(mysql.Open(DBURL), &gorm.Config{})
 		if err != nil {
 			fmt.Printf("Cannot connect to %s database", Dbdriver)
@@ -34,8 +33,7 @@ func ConnectDatabase() {
 		} else {
 			fmt.Printf("We are connected to the %s database", Dbdriver)
 		}
-	}
-	if Dbdriver == constants.Postgres {
+	} else if Dbdriver == constants.Postgres {
 		DBURL := fmt.Sprintf("host=%s port=%s user=%s dbname=%s sslmode=disable password=%s", DbHost, DbPort, DbUser, DbName, DbPassword)
 		DB, err = gorm.Open(postgres.Open(DBURL), &gorm.Config{})
 		if err != nil {
